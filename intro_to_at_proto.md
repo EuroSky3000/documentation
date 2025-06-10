@@ -37,8 +37,6 @@ implement a search across the entire network - by default users on Mastodon
 can only search posts on their own “PDS”. 
 ```
 
-**Example:** 
-
 ```mermaid
 graph TD
     PLC[PLC Directory<br/>Identity Registry]
@@ -76,8 +74,6 @@ graph TD
 
 #### 3.Relay
 While PDSs store data, they do not automatically communicate with each other efficiently. This is where the Relay comes in. A Relay aggregates streams of content from multiple PDSs, adds a sequence number, and arranges them in chronological order. It then makes this unified stream publicly available - similar to a live data “firehose.” Anyone can subscribe to this stream, enabling global search, discovery, and analysis. For example, [firesky.tv](https://firesky.tv) shows a live visualization of this stream in action.
-
-**Diagram:**
 
 ```mermaid
 graph TD
@@ -148,7 +144,6 @@ Examples include:
 
 Each App View provides a custom lens on the shared data - without owning or locking it in.
 
-**Visualization:**
 ```mermaid
 graph TD
     RELAY[🔥 Relay<br/>Enormous Volume<br/>Data Firehose Stream]
