@@ -1,7 +1,6 @@
 # An Introduction to the AT Protocol
 
-Sebastian Vogelsang
-9th June, 2025
+*9th June, 2025*
 
 
 For many years, social media platforms such as Facebook and Twitter operated as walled gardens. These platforms built closed ecosystems where all infrastructure was centralized. They controlled user identities, stored all posts and interactions, and hosted the servers responsible for displaying content - even beyond their platforms, such as in news site embeds. As a result, users had no real ownership over their data or online presence, and the platforms could lock users in while harvesting their personal data for commercial gain.
@@ -184,3 +183,13 @@ ATProto introduces true user agency and mobility in social media. Instead of bei
 This decentralized model also fosters healthy competition. New entrants can build innovative apps without having to recreate the entire social graph or data infrastructure from scratch. For regulators and policymakers, ATProto presents a future-proof alternative to today’s monopolistic digital platforms - one that aligns with European values of interoperability, user rights, and data sovereignty.
 
 ATProto is not theoretical; it is live, growing, and already powering a social network with over 36 million users via the Bluesky platform.
+
+## Get in Touch
+
+For feedback, questions, or collaboration around ATProto or the apps built on it, feel free to reach out:
+
+Sebastian Vogelsang
+CEO of Birdsong Apps GmbH & Founder of Flashes for Bluesky
+📨 [hi@birdsongapps.com](mailto:hi@birdsongapps.com)
+🌐 https://www.flashes.blue
+🦋 [bsky.app/profile/seabass.bsky.social](https://bsky.app/profile/seabass.bsky.social)
