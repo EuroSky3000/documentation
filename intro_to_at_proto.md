@@ -126,12 +126,13 @@ graph TD
 ```
 
 #### 4. App View
-Given the enormous volume of activity in the Relay stream, users and developers need tools to make sense of the data. App Views are specialized services or applications that interpret and display this data according to specific criteria.
+
+Given the enormous volume of activity in the Relay stream, users and developers need tools to make sense of the data. App Views are specialized services or applications that store, enrich, interpret and display data according to application-specific criteria and requirements.
 
 Examples include:
 
 - A service that gathers posts containing the hashtag #art and curates a visual art feed
-- A moderation service that flags harmful or unwanted content
+- A high-level (not application-specific) moderation service that flags harmful or unwanted content
 - A backend API that powers general-purpose apps like Bluesky
 - A photo-first app like [Flashes for Bluesky](https://www.flashes.blue), which highlights posts with images or videos
 
