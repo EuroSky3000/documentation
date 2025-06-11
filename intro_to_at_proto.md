@@ -28,14 +28,7 @@ Every user needs an identity. In ATProto, identity creation happens via the PLC 
 
 A PDS is a server that stores the actual content created by users: posts, likes, comments, follows, and more. Each PDS can host one or many users. Crucially, the data remains under the control of the user. You can choose to self-host a PDS at home, rent a server, or let a provider such as Bluesky host it for you. And if you’re unhappy with your provider, you can move your data to another PDS - just like changing email providers. As of now, there are around 2,000 PDSs in operation, though the majority of users still rely on large-scale PDSs hosted by Bluesky.
 
-```
-Tidbit: You could build a social network with these 2 components by simply
-letting users follow users on other PDSs and sync the posts that are of
-interest between PDSs - and in simplified terms this is what Mastodon /
-ActivityPub is doing. However, you’ll quickly hit a wall when trying to
-implement a search across the entire network - by default users on Mastodon
-can only search posts on their own “PDS”.
-```
+One could build a social network already with only these two components by simply letting users follow users on other PDSs and synchronize the posts that are of interest between PDSs. This is in a nutshell how Mastodon / ActivityPub operates. Apart from the centralization drawbacks, there are some technical issues with this architecture as well. For example,when trying to implement a search across the entire network: by default users on Mastodon can only search posts on their own “PDS”.
 
 ```mermaid
 graph TD
