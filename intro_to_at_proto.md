@@ -4,9 +4,9 @@ Sebastian Vogelsang
 9th June, 2025
 
 
-For many years, social media platforms such as Facebook and Twitter operated as walled gardens. These platforms built closed ecosystems where all infrastructure was centralized. They controlled user identities, stored all posts and interactions, and hosted the servers responsible for displaying content - even beyond their platforms, such as in news site embeds. As a result, users had no real ownership over their data or online presence, and the platforms could lock users in while harvesting their personal data for commercial gain.  
+For many years, social media platforms such as Facebook and Twitter operated as walled gardens. These platforms built closed ecosystems where all infrastructure was centralized. They controlled user identities, stored all posts and interactions, and hosted the servers responsible for displaying content - even beyond their platforms, such as in news site embeds. As a result, users had no real ownership over their data or online presence, and the platforms could lock users in while harvesting their personal data for commercial gain.
 
-The **AT Protocol (Authenticated Transfer Protocol, or ATProto)** is an open, decentralized social media protocol designed to dismantle this monopoly model. It breaks the traditional social network into modular components that can be independently hosted and governed. This architecture ensures user autonomy, interoperability, and competition.
+The **AT Protocol (Authenticated Transfer Protocol, or ATProto)** is an open, decentralized social media protocol designed to dismantle this monopoly model. It breaks the traditional social network into modular components that can be independently hosted and governed. This architecture ensures user autonomy, interoperability, and competition. On a high-level the key goal of this architecture is *not* to enable a monopolistic platform play and subsequent [enshittification](https://en.m.wikipedia.org/wiki/Enshittification).
 
 ## Core Components of ATProto
 
@@ -15,7 +15,7 @@ ATProto is built on **4** key components:
 #### 1. **PLC Directory (Personal Ledger Certificates)**
 Every user needs an identity. In ATProto, identity creation happens via the PLC Directory - a public registry similar to a digital phone book. It stores each user’s unique ATProto identifier, chosen handle (e.g. @jay.bsky.team), cryptographic key (so that everyone can verify your posts are really created by you), and a link to where their data is hosted (your PDS). Currently, the main PLC Directory is hosted by Bluesky. However, there are plans to move it under the stewardship of a neutral entity in a politically neutral jurisdiction. This ensures long-term trust, neutrality, and independence.
 
-**Example:** 
+**Example:**
 | Handle | ATProto Identifier | Cryptographic Key | Data Host Location |
 |--------|-------------------|-------------------|-------------------|
 | @seabass | did:plc:bafyrei7x2... | pk_abc123def456... | bsky.social |
@@ -31,16 +31,16 @@ A PDS is a server that stores the actual content created by users: posts, likes,
 ```
 Tidbit: You could build a social network with these 2 components by simply
 letting users follow users on other PDSs and sync the posts that are of
-interest between PDSs - and in simplified terms this is what Mastodon / 
+interest between PDSs - and in simplified terms this is what Mastodon /
 ActivityPub is doing. However, you’ll quickly hit a wall when trying to
 implement a search across the entire network - by default users on Mastodon
-can only search posts on their own “PDS”. 
+can only search posts on their own “PDS”.
 ```
 
 ```mermaid
 graph TD
     PLC[PLC Directory<br/>Identity Registry]
-    
+
     subgraph graph1 ["Personal Data Servers (PDS)"]
         PDS1[Bluesky PDS<br/>🏢 Large Scale<br/>Hosts: @alice, @bob, @charlie]
         PDS2[Self-Hosted PDS<br/>🏠 Home Server]
@@ -48,26 +48,26 @@ graph TD
         PDS4[Community PDS<br/>🤝 Shared Hosting]
         PDS5[Corporate PDS<br/>🏢 Enterprise]
     end
-    
+
     subgraph graph2 ["User Data Examples"]
         DATA1[Posts, Likes<br/>Comments, Follows<br/>Media Files]
         DATA2[User Content<br/>Social Graph<br/>Preferences]
         DATA3[Timeline Data<br/>Interactions<br/>Settings]
         DATA4[Published Articles]
     end
-    
+
     PLC -.-> |Lookup Identity| graph1
-    
+
     PDS1 --> DATA1
     PDS2 --> DATA2
     PDS3 --> DATA3
     PDS5 --> DATA4
-    
+
     PDS1 -.-> |User can migrate| PDS2
     PDS1 -.-> |User can migrate| PDS3
     PDS1 -.-> |User can migrate| PDS4
     PDS1 -.-> |User can migrate| PDS5
-        
+
     style PLC fill:#e1f5fe
     style PDS1 fill:#fff3e0
  ```
@@ -84,7 +84,7 @@ graph TD
         PDS4[PDS 4<br/>🤝 community.social<br/>Users: @artist]
         PDS5[PDS 5<br/>🏢 corp-server.com<br/>Users: @news_bot]
     end
-    
+
     subgraph "Content Streams"
         STREAM1[Post: Hello world! - @alice<br/>Like: @bob → @alice<br/>Follow: @charlie → @bob]
         STREAM2[Post: New project! - @techie<br/>Comment: Nice work! - @dev]
@@ -92,27 +92,27 @@ graph TD
         STREAM4[Post: New artwork - @artist<br/>Like: @fan → @artist]
         STREAM5[Post: Breaking news - @news_bot<br/>Comment: Thanks! - @reader]
     end
-    
+
     RELAY[🔥 Relay<br/>Data Aggregator<br/>Sequence Numbers<br/>Chronological Order]
-    
+
     PDS1 --> STREAM1
     PDS2 --> STREAM2
     PDS3 --> STREAM3
     PDS4 --> STREAM4
     PDS5 --> STREAM5
-    
+
     STREAM1 --> RELAY
     STREAM2 --> RELAY
     STREAM3 --> RELAY
     STREAM4 --> RELAY
     STREAM5 --> RELAY
-    
+
     subgraph "Unified Firehose Stream"
         FIREHOSE[📡 Live Data Stream<br/>Seq #1: @alice: Hello world!<br/>Seq #2: @news_bot: Breaking news<br/>Seq #3: @techie: New project!<br/>Seq #4: @artist: New artwork<br/>Seq #5: @startup: Startup update]
     end
-    
+
     RELAY --> FIREHOSE
-    
+
     subgraph "Stream Subscribers"
         SUB1[🔍 Search Engines]
         SUB2[📊 Analytics Tools]
@@ -120,13 +120,13 @@ graph TD
         SUB4[🤖 AI Services]
         SUB5[📱 Client Apps]
     end
-    
+
     FIREHOSE -.-> SUB1
     FIREHOSE -.-> SUB2
     FIREHOSE -.-> SUB3
     FIREHOSE -.-> SUB4
     FIREHOSE -.-> SUB5
-    
+
     style RELAY fill:#ff6b6b,color:#fff
     style FIREHOSE fill:#4ecdc4,color:#fff
     style SUB3 fill:#ffe66d
@@ -147,7 +147,7 @@ Each App View provides a custom lens on the shared data - without owning or lock
 ```mermaid
 graph TD
     RELAY[🔥 Relay<br/>Enormous Volume<br/>Data Firehose Stream]
-    
+
     subgraph "App Views - Specialized Services"
         AV1[🎨 Art Curation Service<br/>Filters: #art hashtag<br/>Output: Visual art feed]
         AV2[🛡️ Moderation Service<br/>Filters: Harmful content<br/>Output: Safety flags]
@@ -155,7 +155,7 @@ graph TD
         AV4[📸 Flashes for Bluesky<br/>Filters: Images & videos<br/>Output: Photo-first feed]
         AV5[📰 News Aggregator<br/>Filters: News accounts<br/>Output: Breaking news feed]
     end
-    
+
     subgraph "Custom Interpretations"
         OUT1[🖼️ Curated Art Gallery<br/>Beautiful visual content<br/>Artist discovery]
         OUT2[⚠️ Content Warnings<br/>Filtered timeline<br/>Safe browsing]
@@ -163,19 +163,19 @@ graph TD
         OUT4[📷 Photo Stream<br/>Visual storytelling<br/>Image-focused UI]
         OUT5[📺 News Dashboard<br/>Real-time updates<br/>Breaking stories]
     end
-    
+
     RELAY --> AV1
     RELAY --> AV2
     RELAY --> AV3
     RELAY --> AV4
     RELAY --> AV5
-    
+
     AV1 --> OUT1
     AV2 --> OUT2
     AV3 --> OUT3
     AV4 --> OUT4
     AV5 --> OUT5
-        
+
     style RELAY fill:#ff6b6b,color:#fff
     style AV1 fill:#e1f5fe
     style AV2 fill:#fff3e0
@@ -190,5 +190,3 @@ ATProto introduces true user agency and mobility in social media. Instead of bei
 This decentralized model also fosters healthy competition. New entrants can build innovative apps without having to recreate the entire social graph or data infrastructure from scratch. For regulators and policymakers, ATProto presents a future-proof alternative to today’s monopolistic digital platforms - one that aligns with European values of interoperability, user rights, and data sovereignty.
 
 ATProto is not theoretical; it is live, growing, and already powering a social network with over 36 million users via the Bluesky platform.
-
-
